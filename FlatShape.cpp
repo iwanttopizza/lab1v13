@@ -31,9 +31,9 @@ FlatShape::~FlatShape() {
 void FlatShape::inputFromConsole() {
     int choice;
     std::cout << "\n--- Select Flat Shape Type ---\n";
-    std::cout << "1. Circle (Krug)\n";
-    std::cout << "2. Rectangle (Pryamougolnik)\n";
-    std::cout << "3. Triangle (Treugolnik)\n";
+    std::cout << "1. Circle\n";
+    std::cout << "2. Rectangle\n";
+    std::cout << "3. Triangle\n";
     std::cout << "Selection: ";
     std::cin >> choice;
 
@@ -67,7 +67,7 @@ void FlatShape::inputFromConsole() {
         std::cout << "Enter Height: ";
         std::cin >> height;
         area = 0.5 * width * height;
-        
+
     } else {
         // Если ввели ерунду, делаем дефолтную фигуру
         type = new char[8];
@@ -83,7 +83,37 @@ void FlatShape::printToConsole() {
     std::cout << "Type: " << type << "\n";
     std::cout << "Dimensions: " << width << " x " << height << "\n";
     std::cout << "Area: " << area << "\n";
-    std::cout << "Drawing: [ " << type << " ] displayed on screen.\n";
+
+    std::string t(type ? type : "Unknown");
+    for (auto &c : t) c = tolower(c);
+
+    std::cout << "\nASCII Drawing:\n";
+    if (t == "circle") {
+        std::cout <<
+        "    *****\n"
+        "  **     **\n"
+        " *         *\n"
+        " *         *\n"
+        " *         *\n"
+        "  **     **\n"
+        "    *****\n";
+    } else if (t == "rectangle") {
+        std::cout <<
+        "+----------------+\n"
+        "|                |\n"
+        "|                |\n"
+        "|                |\n"
+        "+----------------+\n";
+    } else if (t == "triangle") {
+        std::cout <<
+        "      *\n"
+        "     * *\n"
+        "    *   *\n"
+        "   *     *\n"
+        "  *********\n";
+    } else {
+        std::cout << "[No ASCII drawing for this shape]\n";
+    }
 }
 
 void FlatShape::saveToFile(std::ofstream& out) {

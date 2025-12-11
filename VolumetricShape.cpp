@@ -76,7 +76,44 @@ void VolumetricShape::printToConsole() {
     std::cout << "Type: " << type << "\n";
     std::cout << "Dimensions: " << width << " x " << height << " x " << depth << "\n";
     std::cout << "Volume: " << volume << "\n";
-    std::cout << "Drawing: Projected as flat [ " << type << " ] on screen.\n";
+    
+
+    std::string t(type ? type : "Unknown");
+    for (auto &c : t) c = tolower(c);
+
+    std::cout << "\nASCII Projection:\n";
+
+    if (t == "sphere") {
+        std::cout <<
+        "    @@@@@\n"
+        "  @       @\n"
+        " @         @\n"
+        " @@@    @@@@\n"
+        " @  @@@@   @\n"
+        "  @       @\n"
+        "   @@@@@@@\n";
+    }
+    else if (t == "parallelepiped") {
+        std::cout <<
+        "    +----------+\n"
+        "   /          /|\n"
+        "  +----------+ |\n"
+        "  |          | +\n"
+        "  |          |/\n"
+        "  +----------+\n";
+    }
+    else if (t == "cone") {
+        std::cout <<
+        "     /\\\n"
+        "    /  \\\n"
+        "   /    \\\n"
+        "  /      \\\n"
+        " /        \\\n"
+        " ----------\n";
+    }
+    else {
+        std::cout << "[No ASCII projection for this shape]\n";
+    }
 }
 
 void VolumetricShape::saveToFile(std::ofstream& out) {
