@@ -2,13 +2,14 @@
 #define VOLUMETRICSHAPE_H
 
 #include "Shape.h"
+#include <string>
 
 class VolumetricShape : public Shape {
 private:
     char* type;
     double width, height, depth;
     double volume;
-
+    std::string drawing;
 public:
     VolumetricShape();
     VolumetricShape(const VolumetricShape& other);

@@ -2,6 +2,7 @@
 #define FLATSHAPE_H
 
 #include "Shape.h"
+#include  <string>
 
 class FlatShape : public Shape {
 private:
@@ -9,6 +10,7 @@ private:
     double width;     // Размеры
     double height;
     double area;      // Площадь
+    std::string drawing;
 
 public:
     FlatShape();

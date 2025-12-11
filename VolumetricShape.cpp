@@ -42,6 +42,14 @@ void VolumetricShape::inputFromConsole() {
         depth = width;
         // V = 4/3 * pi * r^3
         volume = (4.0/3.0) * 3.14159 * width * width * width;
+        drawing =
+        "    @@@@@\n"
+        "  @       @\n"
+        " @         @\n"
+        " @@@    @@@@\n"
+        " @  @@@@   @\n"
+        "  @       @\n"
+        "   @@@@@@@\n";
         
     } else if (choice == 2) {
         type = new char[14];
@@ -51,6 +59,13 @@ void VolumetricShape::inputFromConsole() {
         std::cout << "Enter Height: "; std::cin >> height;
         std::cout << "Enter Depth: "; std::cin >> depth;
         volume = width * height * depth;
+        drawing = 
+        "    +----------+\n"
+        "   /          /|\n"
+        "  +----------+ |\n"
+        "  |          | +\n"
+        "  |          |/\n"
+        "  +----------+\n";
         
     } else if (choice == 3) {
         type = new char[5];
@@ -61,6 +76,13 @@ void VolumetricShape::inputFromConsole() {
         depth = width;
         // V = 1/3 * pi * r^2 * h
         volume = (1.0/3.0) * 3.14159 * width * width * height;
+        drawing = 
+        "     /\\\n"
+        "    /  \\\n"
+        "   /    \\\n"
+        "  /      \\\n"
+        " /        \\\n"
+        " ----------\n";
         
     } else {
         type = new char[8];
@@ -76,44 +98,7 @@ void VolumetricShape::printToConsole() {
     std::cout << "Type: " << type << "\n";
     std::cout << "Dimensions: " << width << " x " << height << " x " << depth << "\n";
     std::cout << "Volume: " << volume << "\n";
-    
-
-    std::string t(type ? type : "Unknown");
-    for (auto &c : t) c = tolower(c);
-
-    std::cout << "\nASCII Projection:\n";
-
-    if (t == "sphere") {
-        std::cout <<
-        "    @@@@@\n"
-        "  @       @\n"
-        " @         @\n"
-        " @@@    @@@@\n"
-        " @  @@@@   @\n"
-        "  @       @\n"
-        "   @@@@@@@\n";
-    }
-    else if (t == "parallelepiped") {
-        std::cout <<
-        "    +----------+\n"
-        "   /          /|\n"
-        "  +----------+ |\n"
-        "  |          | +\n"
-        "  |          |/\n"
-        "  +----------+\n";
-    }
-    else if (t == "cone") {
-        std::cout <<
-        "     /\\\n"
-        "    /  \\\n"
-        "   /    \\\n"
-        "  /      \\\n"
-        " /        \\\n"
-        " ----------\n";
-    }
-    else {
-        std::cout << "[No ASCII projection for this shape]\n";
-    }
+    std::cout << "Drawing:\n\n" << drawing << "\n";
 }
 
 void VolumetricShape::saveToFile(std::ofstream& out) {

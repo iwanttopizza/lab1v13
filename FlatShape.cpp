@@ -47,7 +47,14 @@ void FlatShape::inputFromConsole() {
         std::cin >> width;
         height = width; // Для круга высота = ширина (диаметр/радиус)
         area = 3.14159 * width * width;
-        
+        drawing =
+        "    *****\n"
+        "  **     **\n"
+        " *         *\n"
+        " *         *\n"
+        " *         *\n"
+        "  **     **\n"
+        "    *****\n";
     } else if (choice == 2) {
         type = new char[10];
         strcpy(type, "Rectangle");
@@ -57,6 +64,12 @@ void FlatShape::inputFromConsole() {
         std::cout << "Enter Height: ";
         std::cin >> height;
         area = width * height;
+        drawing = 
+        "+----------------+\n"
+        "|                |\n"
+        "|                |\n"
+        "|                |\n"
+        "+----------------+\n";
         
     } else if (choice == 3) {
         type = new char[9];
@@ -67,7 +80,12 @@ void FlatShape::inputFromConsole() {
         std::cout << "Enter Height: ";
         std::cin >> height;
         area = 0.5 * width * height;
-
+        drawing =
+        "      *\n"
+        "     * *\n"
+        "    *   *\n"
+        "   *     *\n"
+        "  *********\n";
     } else {
         // Если ввели ерунду, делаем дефолтную фигуру
         type = new char[8];
@@ -83,37 +101,7 @@ void FlatShape::printToConsole() {
     std::cout << "Type: " << type << "\n";
     std::cout << "Dimensions: " << width << " x " << height << "\n";
     std::cout << "Area: " << area << "\n";
-
-    std::string t(type ? type : "Unknown");
-    for (auto &c : t) c = tolower(c);
-
-    std::cout << "\nASCII Drawing:\n";
-    if (t == "circle") {
-        std::cout <<
-        "    *****\n"
-        "  **     **\n"
-        " *         *\n"
-        " *         *\n"
-        " *         *\n"
-        "  **     **\n"
-        "    *****\n";
-    } else if (t == "rectangle") {
-        std::cout <<
-        "+----------------+\n"
-        "|                |\n"
-        "|                |\n"
-        "|                |\n"
-        "+----------------+\n";
-    } else if (t == "triangle") {
-        std::cout <<
-        "      *\n"
-        "     * *\n"
-        "    *   *\n"
-        "   *     *\n"
-        "  *********\n";
-    } else {
-        std::cout << "[No ASCII drawing for this shape]\n";
-    }
+    std::cout << "Drawing:\n\n" << drawing << "\n";
 }
 
 void FlatShape::saveToFile(std::ofstream& out) {
