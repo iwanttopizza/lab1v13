@@ -1,5 +1,5 @@
 #include "FlatShape.h"
-#include <iomanip>
+//#include <iomanip>
 
 FlatShape::FlatShape() : width(0), height(0), area(0) {
     type = new char[1];
